@@ -25,13 +25,13 @@
 </head>
 <body>
     <main>
-        <div class="container-fluid p-5" id="app">
+        <div class="container-fluid p-5" id="app" @mouseover="stopAutoSlideElement" @mouseleave="autoSlideElement">
             <div class="row text-center">
                 <div class="col-12 p-3" id="my-before-carousel">
 
                 </div>
                 <div class="col-12 p-5">
-                    <div class="my-carousel-container d-flex flex-column px-5" id="my-carousel" @mouseover="stopAutoSlideElement" @mouseleave="autoSlideElement">
+                    <div class="my-carousel-container d-flex flex-column px-5" id="my-carousel" >
                         <div class="my-carousel-images">
                             <!-- immagini -->
                             <div class= "item" v-for="(images, index) in elements" :class="(index === activeElement) ? 'active' : '' ">
@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 <div class="col-12 p-3" id="my-after-carousel">
-                    <button class="btn btn-warning"></button>
+                    <button class="btn btn-warning" @click="autoSlideElementLeft" @mouseleave="stopAutoSlideElementLeft">Gira il giro</button>
                 </div>
             </div>
         </div>

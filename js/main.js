@@ -4,6 +4,7 @@ const app = new Vue(
     {
         el: '#app',
         data: {
+                setSlideLeft: 0,
                 setSlide: 0,
                 activeElement: 0,
                 elements: [
@@ -65,6 +66,15 @@ const app = new Vue(
             stopAutoSlideElement() {
                 clearInterval(this.setSlide);
                 this.setSlide = 0;
+            },
+            autoSlideElementLeft() {
+                this.setSlideLeft = setInterval(() => {
+                    this.prevElement();
+                },3500)
+            },
+            stopAutoSlideElementLeft() {
+                clearInterval(this.setSlideLeft);
+                this.setSlideLeft = 0;
             }
         },
     }
