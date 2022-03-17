@@ -4,7 +4,7 @@ const app = new Vue(
     {
         el: '#app',
         data: {
-                setSlide: null,
+                setSlide: 0,
                 activeElement: 0,
                 elements: [
                 {
@@ -64,7 +64,7 @@ const app = new Vue(
             },
             stopAutoSlideElement() {
                 clearInterval(this.setSlide);
-                this.setSlide = null;
+                this.setSlide = 0;
             }
         },
     }
