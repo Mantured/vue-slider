@@ -31,8 +31,8 @@
 
                 </div>
                 <div class="col-12 p-5">
-                    <div class="my-carousel-container d-flex flex-column px-5" id="my-carousel">
-                        <div class="my-carousel-images"  >
+                    <div class="my-carousel-container d-flex flex-column px-5" id="my-carousel" @mouseover="stopAutoSlideElement" @mouseleave="autoSlideElement">
+                        <div class="my-carousel-images">
                             <!-- immagini -->
                             <div class= "item" v-for="(images, index) in elements" :class="(index === activeElement) ? 'active' : '' ">
                                 <img class="img-fluid" :src="`img/${images.imageSrc}`" :alt= "images.title">
@@ -43,7 +43,7 @@
                             </div>
                         </div>
                         <div class="my-thumbnails position-relative" >
-                            <div class="thumbnail" v-for="(thumbnail, index) in elements" :class="(index === activeElement) ? 'active' : '' ">
+                            <div class="thumbnail" v-for="(thumbnail, index) in elements" :class="(index === activeElement) ? 'active' : '' " @click="selectElement(index)">
                                 <img  :src="`img/${thumbnail.imageSrc}`" :alt="thumbnail.title">
                             </div>
                             <!-- prev -->

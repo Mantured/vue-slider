@@ -4,6 +4,7 @@ const app = new Vue(
     {
         el: '#app',
         data: {
+                setSlide: null,
                 activeElement: 0,
                 elements: [
                 {
@@ -39,57 +40,37 @@ const app = new Vue(
             ],
         },
         methods: {
-            nextElement: function () {
-                if (this.activeElement === this.elements.length - 1)
-                    this.activeElement = 0;
-                else {
-                    this.activeElement++;
-                }
-            },
             //ma famolo col ternario
+            nextElement: function () {
+                (this.activeElement === this.elements.length - 1) ? this.activeElement = 0 : this.activeElement++;
+            },
             prevElement: function () {
                 (this.activeElement === 0) ? this.activeElement = this.elements.length - 1 : this.activeElement--;
+            },
+
+            /**
+             *
+             * @param {*} elementIndex index of element (sostanzialmente l'indice che gli passo col v for)
+             */
+            selectElement: function (elementIndex) {
+                this.activeElement = elementIndex;
+            },
+
+            autoSlideElement() {
+                this.setSlide = setInterval(() => {
+                    this.nextElement();
+                    console.log(this); //!parent undefine? vedi il perchè anche se ha nextElement
+                }, 3000);
+            },
+            stopAutoSlideElement() {
+                clearInterval(this.setSlide);
+                this.setSlide = null;
             }
         },
     }
 
 )
 
-
-/* document.getElementById('my-after-carousel').innerHTML = `
-    <button class="btn btn-dark" id="reverse-direction">Gira il Giro</button>
-` */
-
-/* document.querySelector('.my-next').addEventListener('click', next);
-document.querySelector('.my-previous').addEventListener('click', prev); */
-
-/* const directionLeft = setInterval(coldPursuit, 1000);
-const directionRight = setInterval(hotPursuit, 1000);
-directionRight;
-
-document.querySelector('#reverse-direction').addEventListener('click', function () {
-
-    setTimeout(clearInterval,10000,directionLeft)
-    clearInterval(directionLeft);
-
-    setTimeout(clearInterval,10000,directionRight)
-})
-
-function hotPursuit() {
-    unactive();
-    next();
-    active();
-}
-
-function coldPursuit() {
-    prev();
-    unactive();
-    prev();
-    active();
-} */
-
-//| setTimeout(clearInterval, timeUser, directionRight);
-//? carina
 
 
 
